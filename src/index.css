@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: driveluxury --default;
+}
+
+/* ---------- Thème DaisyUI DriveLuxury (clair premium, accent orange) ---------- */
+@plugin "daisyui/theme" {
+  name: "driveluxury";
+  default: true;
+  color-scheme: light;
+  --color-base-100: #ffffff;
+  --color-base-200: #f8fafc;
+  --color-base-300: #e2e8f0;
+  --color-base-content: #0f1419;
+  --color-primary: #f0a500;
+  --color-primary-content: #ffffff;
+  --color-secondary: #1f2937;
+  --color-secondary-content: #e2e8f0;
+  --color-accent: #38bdf8;
+  --color-accent-content: #0b0f12;
+  --color-neutral: #1b242b;
+  --color-neutral-content: #e2e8f0;
+  --color-info: #38bdf8;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+}
+
+/* ---------- Variables de marque DriveLuxury ---------- */
+:root {
+  --brand: #f0a500;
+  --ink: #0f1419;
+  --bg-light: #ffffff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==================================================================
+   Hero — animation de la voiture qui roule
+   ================================================================== */
+
+/* Trajet de gauche a droite, en boucle. La voiture sort a droite
+   puis revient a gauche par une translation inverse pendant que
+   l'opacite est nulle (fondue), pour eviter un retour visible. */
+@keyframes dl-car-drive {
+  0%   { transform: translateX(-16vw); opacity: 0; }
+  6%   { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { transform: translateX(108vw); opacity: 0; }
+}
+
+/* Tangage vertical : la caisse monte et descend legerement,
+   comme sur une route legerement irreguliere. */
+@keyframes dl-car-bob {
+  0%, 100% { transform: translateY(0) rotate(-0.35deg); }
+  50%      { transform: translateY(-3px) rotate(0.35deg); }
+}
+
+/* Pulsation de l'ombre au sol, synchronisee avec le tangage. */
+@keyframes dl-car-shadow-pulse {
+  0%, 100% { transform: scaleX(1);    opacity: 0.45; }
+  50%      { transform: scaleX(0.94); opacity: 0.32; }
+}
+
+/* Defilement des marquages au sol. */
+@keyframes dl-road-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.dl-car {
+  animation: dl-car-drive 14s linear infinite;
+  will-change: transform;
+}
+
+.dl-car-body {
+  animation: dl-car-bob 1.1s ease-in-out infinite;
+  will-change: transform;
+}
+
+.dl-car-shadow {
+  animation: dl-car-shadow-pulse 1.1s ease-in-out infinite;
+}
+
+/* Deux rangees de marquages identiques cote a cote : en translatant de
+   -50% on obtient une boucle parfaitement continue. */
+.dl-road-marks {
+  width: 200%;
+  background-image: repeating-linear-gradient(
+    to right,
+    #f0a500 0px,
+    #f0a500 70px,
+    transparent 70px,
+    transparent 150px
+  );
+  animation: dl-road-scroll 1.6s linear infinite;
+}
+
+/* Respecte la preference systeme "reduire les animations". */
+@media (prefers-reduced-motion: reduce) {
+  .dl-car,
+  .dl-car-body,
+  .dl-car-shadow,
+  .dl-road-marks {
+    animation: none;
+  }
+}
