@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { asset } from '../utils/asset';
 import {
   Menu, X, ArrowRight, Phone, ShieldCheck, ChevronDown, Headset, Car,
 } from 'lucide-react';
@@ -7,7 +8,7 @@ import {
 export default function Navbar() {
     // État pour ouvrir/fermer le menu mobile sur les petits écrans
     const [isOpen, setIsOpen] = useState(false);
-    
+
     // Permet de savoir sur quelle page l'utilisateur se trouve pour mettre en surbrillance le lien actif
     const location = useLocation();
 
@@ -57,11 +58,11 @@ export default function Navbar() {
 
           {/* ============ NAVBAR PRINCIPAL ============ */}
           <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
-            
+
             {/* 1. LOGO DE LA MARQUE */}
             <Link to="/" className="flex items-center gap-2.5 group" aria-label="DriveX Car Rental">
               <img
-                src="/brand/logo-mark.png"
+                src={asset('/brand/logo-mark.png')}
                 alt="DriveX"
                 width="40"
                 height="40"

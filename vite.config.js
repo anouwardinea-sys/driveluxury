@@ -4,10 +4,26 @@ import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-    babel({ presets: [reactCompilerPreset()] })
-  ],
+//
+// `base` determine le prefixe de toutes les URLs d'assets.
+//  - En local (`npm run dev` / `npm run preview`) : '/' -> les fichiers de
+//    `public/` sont servis depuis la racine, ex. '/images/benz1.png'.
+//  - Sur GitHub Pages : '/driveluxury/' -> tout est servi sous ce sous-dossier,
+//    ex. '/driveluxury/images/benz1.png'.
+// On pilote donc le base via la variable d'environnement VITE_BASE_PATH :
+//   npm run build            -> base '/' (defaut)
+//   VITE_BASE_PATH=/driveluxury/ npm run build  -> base '/driveluxury/' (deploy)
+export default defineConfig(({ command }) => {
+  const envBase = process.env.VITE_BASE_PATH
+  // Fallback : en production met '/driveluxury/', en dev '/'
+  const base = envBase || (command === 'build' ? '/driveluxury/' : '/')
+
+  return {
+    plugins: [
+      react(),
+      tailwindcss(),
+      babel({ presets: [reactCompilerPreset()] }),
+    ],
+    base,
+  }
 })

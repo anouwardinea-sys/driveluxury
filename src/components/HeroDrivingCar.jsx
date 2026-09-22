@@ -10,6 +10,8 @@
 // n'utiliser aucune librairie d'animation supplementaire.
 // ------------------------------------------------------------------
 
+import { asset } from '../utils/asset';
+
 export default function HeroDrivingCar() {
   return (
     <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 hidden lg:block">
@@ -32,7 +34,7 @@ export default function HeroDrivingCar() {
         {/* la voiture — posee sur l'asphalte (h-20 = 80px), d'ou bottom-20 */}
         <div className="dl-car absolute bottom-20 left-0">
           <img
-            src="/images/benzclass.png"
+            src={asset('/images/benzclass.png')}
             alt="Mercedes-Benz G-Class driving"
             className="dl-car-body w-[380px] xl:w-[460px] drop-shadow-2xl"
           />

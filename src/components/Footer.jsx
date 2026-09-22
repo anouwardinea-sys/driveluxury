@@ -2,6 +2,7 @@
 // NOTE: dans cette version de lucide-react, les icônes Twitter/Linkedin ne sont
 // plus exportées. On utilise des icônes disponibles pour ne pas casser le build.
 import { Globe, AtSign, Share2, Send, MapPin, Mail, Phone, ArrowRight } from 'lucide-react';
+import { asset } from '../utils/asset';
 
 const columns = [
   {
@@ -33,7 +34,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <img
-                src="/brand/logo-mark.png"
+                src={asset('/brand/logo-mark.png')}
                 alt="DriveX"
                 width="40"
                 height="40"
