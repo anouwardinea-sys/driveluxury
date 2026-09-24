@@ -4,24 +4,32 @@ import { Link } from 'react-router-dom';
 export default function CarCard({ car }) {
   return (
     <article className="group relative rounded-2xl overflow-hidden bg-white border-slate-200 hover:border-[#f0a500]/50 hover:shadow-xl transition flex duration-300 flex-col">
-      {/* Image */}
-      <div className="relative h-52 overflow-hidden">
-        <img
-          src={car.image}
-          alt={car.name}
-          loading="lazy"
-          className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+      {/* Image — le vehicule pivote en continu : balayage gauche/droite
+          (rotateY) combine a un tangage haut/bas (rotateX). Le fond blanc
+          se fond avec la photo du vehicule, sur fond blanc uni. */}
+      <div className="dl-car-spin relative h-52 overflow-hidden bg-white">
+        <div className="dl-car-pitch absolute inset-0 flex items-center justify-center">
+          <img
+            src={car.image}
+            alt={car.name}
+            loading="lazy"
+            className="dl-car-revolve max-h-[85%] max-w-[88%] object-contain"
+          />
+        </div>
+
+        {/* Socle / ombre portee sous le vehicule (suit la rotation) */}
+        <div className="dl-car-ground absolute bottom-6 left-1/2 -ml-[34%] w-[68%] h-3 rounded-[50%] bg-black/20 blur-md" />
+
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
 
         {/* Category badge */}
-        <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-white/90 backdrop-blur text-[#f0a500]">
+        <span className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-white/90 backdrop-blur text-[#f0a500]">
           {car.category}
         </span>
 
         {/* Availability badge */}
         <span
-          className={`absolute top-4 right-4 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase backdrop-blur ${
+          className={`absolute top-4 right-4 z-10 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase backdrop-blur ${
             car.available
               ? 'bg-emerald-500/90 text-white'
               : 'bg-red-500/90 text-white'

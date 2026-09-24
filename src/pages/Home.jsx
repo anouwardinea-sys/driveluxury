@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 import { cars, categories, features, steps, testimonials, stats, faqs } from '../data/carsData';
 import CarCard from '../components/CarCard';
-import HeroDrivingCar from '../components/HeroDrivingCar';
+import { asset } from '../utils/asset';
 
 const iconMap = {
   shield: ShieldCheck,
@@ -28,14 +28,24 @@ export default function Home() {
       {/* ================= HERO ================= */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1920&q=80"
-            alt="Luxury car"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1419] via-[#0f1419]/90 to-[#0f1419]/40" />
-          {/* assombrit le bas pour que la route et la voiture se detachent bien */}
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0f1419] to-transparent" />
+          {/* Video de fond : une voiture qui roule sur une route. */}
+          <video
+            className="dl-hero-video absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+            poster={asset('/videos/hero-car-poster.jpg')}
+          >
+            <source src={asset('/videos/hero-car.mp4')} type="video/mp4" />
+          </video>
+
+          {/* Voiles de contraste pour garder le texte lisible sur la video */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1419]/95 via-[#0f1419]/80 to-[#0f1419]/30" />
+          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#0f1419] via-[#0f1419]/70 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#0f1419]/80 to-transparent" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 pt-24 lg:pt-36 pb-52 lg:pb-64">
@@ -68,9 +78,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* Voiture qui roule, au-dessus de la barre de stats */}
-        <HeroDrivingCar />
 
         {/* Stats bar */}
         <div className="relative z-20 max-w-7xl mx-auto px-6 pb-16">
