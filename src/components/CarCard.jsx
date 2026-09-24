@@ -7,18 +7,18 @@ export default function CarCard({ car }) {
       {/* Image — le vehicule pivote en continu : balayage gauche/droite
           (rotateY) combine a un tangage haut/bas (rotateX). Le fond blanc
           se fond avec la photo du vehicule, sur fond blanc uni. */}
-      <div className="dl-car-spin relative h-52 overflow-hidden bg-white">
+      <div className="dl-car-spin relative h-64 overflow-hidden bg-white">
         <div className="dl-car-pitch absolute inset-0 flex items-center justify-center">
           <img
             src={car.image}
             alt={car.name}
             loading="lazy"
-            className="dl-car-revolve max-h-[85%] max-w-[88%] object-contain"
+            className="dl-car-revolve h-full w-full object-cover"
           />
         </div>
 
         {/* Socle / ombre portee sous le vehicule (suit la rotation) */}
-        <div className="dl-car-ground absolute bottom-6 left-1/2 -ml-[34%] w-[68%] h-3 rounded-[50%] bg-black/20 blur-md" />
+        <div className="dl-car-ground absolute bottom-5 left-1/2 -ml-[34%] w-[68%] h-3 rounded-[50%] bg-black/20 blur-md" />
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
 

@@ -62,16 +62,16 @@ export default function Home() {
               Premium rental, zero hassle. Choose from our hand-picked fleet of luxury, sports and
               electric vehicles — delivered where you are, when you need it.
             </p>
-            <div className="mt-8 flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-5">
               <Link
                 to="/fleet"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f0a500] hover:bg-[#d99200] text-white font-bold text-sm tracking-wide transition shadow-lg shadow-amber-500/25"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#f0a500] hover:bg-[#d99200] text-white font-bold text-sm tracking-wide transition shadow-lg shadow-amber-500/25"
               >
                 EXPLORE THE FLEET <ArrowRight className="w-4 h-4" />
               </Link>
               <a
                 href="#how-it-works"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-slate-600 text-white font-bold text-sm tracking-wide hover:bg-white/10 transition"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-slate-600 text-white font-bold text-sm tracking-wide hover:bg-white/10 transition"
               >
                 <PlayCircle className="w-5 h-5 text-[#f0a500]" /> HOW IT WORKS
               </a>
@@ -261,16 +261,16 @@ export default function Home() {
             <p className="mt-4 text-slate-300 text-sm sm:text-base">
               Book in under two minutes. Free cancellation, unlimited mileage and 24/7 support included.
             </p>
-            <div className="mt-8 flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-5">
               <Link
                 to="/booking"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#f0a500] hover:bg-[#d99200] text-white font-bold text-sm tracking-wide transition shadow-lg shadow-amber-500/25"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#f0a500] hover:bg-[#d99200] text-white font-bold text-sm tracking-wide transition shadow-lg shadow-amber-500/25"
               >
                 BOOK NOW <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-slate-600 text-white font-bold text-sm tracking-wide hover:bg-white/10 transition"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border border-slate-600 text-white font-bold text-sm tracking-wide hover:bg-white/10 transition"
               >
                 TALK TO US
               </Link>
