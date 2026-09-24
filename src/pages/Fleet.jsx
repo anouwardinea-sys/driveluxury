@@ -1,7 +1,15 @@
 import { useState } from 'react';
-import { SlidersHorizontal } from 'lucide-react';
+import { SlidersHorizontal, Caravan, CarFront, Flame, Zap, Crown } from 'lucide-react';
 import { cars, categories } from '../data/carsData';
 import CarCard from '../components/CarCard';
+
+const categoryIcons = {
+  caravan: Caravan,
+  carFront: CarFront,
+  flame: Flame,
+  zap: Zap,
+  crown: Crown,
+};
 
 export default function Fleet() {
   const [active, setActive] = useState('all');
@@ -49,19 +57,23 @@ export default function Fleet() {
             >
               ALL CARS
             </button>
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActive(cat.id)}
-                className={`px-4 py-2 rounded-lg text-[12px] font-bold tracking-wide transition ${
-                  active === cat.id
-                    ? 'bg-[#f0a500] text-white shadow-md shadow-amber-500/25'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
-              >
-                {cat.name.toUpperCase()}
-              </button>
-            ))}
+            {categories.map((cat) => {
+              const Icon = categoryIcons[cat.icon];
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActive(cat.id)}
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-[12px] font-bold tracking-wide transition ${
+                    active === cat.id
+                      ? 'bg-[#f0a500] text-white shadow-md shadow-amber-500/25'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  {Icon && <Icon className="w-3.5 h-3.5" strokeWidth={2} />}
+                  {cat.name.toUpperCase()}
+                </button>
+              );
+            })}
           </div>
 
           <span className="flex items-center gap-2 text-[12px] font-semibold text-slate-500">

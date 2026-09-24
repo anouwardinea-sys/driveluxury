@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import {
   ArrowRight, Star, ShieldCheck, Headset, RefreshCw, Tag, MapPin, Gauge,
   Car, CalendarCheck, KeyRound, Route, Search, ChevronDown, Quote, PlayCircle,
+  Caravan, CarFront, Flame, Zap, Crown,
 } from 'lucide-react';
 import { cars, categories, features, steps, testimonials, stats, faqs } from '../data/carsData';
 import CarCard from '../components/CarCard';
@@ -18,6 +19,12 @@ const iconMap = {
   calendar: CalendarCheck,
   key: KeyRound,
   road: Route,
+  // Icones des categories de vehicules
+  caravan: Caravan,
+  carFront: CarFront,
+  flame: Flame,
+  zap: Zap,
+  crown: Crown,
 };
 
 export default function Home() {
@@ -113,17 +120,22 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-6 py-20">
         <SectionHeading eyebrow="Browse by type" title="Car Categories" />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {categories.map((cat) => (
-            <Link
-              to="/fleet"
-              key={cat.id}
-              className="group flex flex-col items-center gap-3 py-7 rounded-2xl bg-slate-50 border-slate-200 hover:border-[#f0a500]/50 hover:shadow-lg transition"
-            >
-              <span className="text-3xl group-hover:scale-110 transition">{cat.icon}</span>
-              <span className="text-sm font-bold text-[#0f1419]">{cat.name}</span>
-              <span className="text-xs text-slate-500">{cat.count} cars</span>
-            </Link>
-          ))}
+          {categories.map((cat) => {
+            const Icon = iconMap[cat.icon] || Car;
+            return (
+              <Link
+                to="/fleet"
+                key={cat.id}
+                className="group flex flex-col items-center gap-3 py-7 rounded-2xl bg-slate-50 border-slate-200 hover:border-[#f0a500]/50 hover:bg-white hover:shadow-lg transition"
+              >
+                <span className="w-14 h-14 rounded-full bg-[#f0a500]/10 text-[#f0a500] flex items-center justify-center group-hover:bg-[#f0a500] group-hover:text-white group-hover:scale-110 transition duration-300">
+                  <Icon className="w-7 h-7" strokeWidth={1.75} />
+                </span>
+                <span className="text-sm font-bold text-[#0f1419]">{cat.name}</span>
+                <span className="text-xs text-slate-500">{cat.count} cars</span>
+              </Link>
+            );
+          })}
         </div>
       </section>
 

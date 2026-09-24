@@ -4,12 +4,15 @@
 
 import { asset } from '../utils/asset';
 
+// Les icones sont des references a des composants `lucide-react`
+// (voir l'iconMap dans Home.jsx). On evite les emojis : leur rendu
+// depend de l'OS et leurs tailles ne sont pas coherentes entre elles.
 const categoryList = [
-  { id: "suv", name: "SUV", icon: "🚙" },
-  { id: "sedan", name: "Sedan", icon: "🚗" },
-  { id: "sports", name: "Sports", icon: "🏎️" },
-  { id: "electric", name: "Electric", icon: "⚡" },
-  { id: "luxury", name: "Luxury", icon: "👑" },
+  { id: "suv", name: "SUV", icon: "caravan" },
+  { id: "sedan", name: "Sedan", icon: "carFront" },
+  { id: "sports", name: "Sports", icon: "flame" },
+  { id: "electric", name: "Electric", icon: "zap" },
+  { id: "luxury", name: "Luxury", icon: "crown" },
 ];
 
 export const cars = [
@@ -33,7 +36,7 @@ export const cars = [
     name: "Mercedes-Benz GLS Maybach",
     category: "luxury",
     price: 420,
-    image: asset("/images/benz1.png"),
+    image: asset("/images/benz1-car.png"),
     rating: 5.0,
     seats: 5,
     transmission: "Automatic",
