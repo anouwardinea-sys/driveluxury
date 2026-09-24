@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 import { cars, categories, features, steps, testimonials, stats, faqs } from '../data/carsData';
 import CarCard from '../components/CarCard';
-import { asset } from '../utils/asset';
+import HeroVideo from '../components/HeroVideo';
 
 const iconMap = {
   shield: ShieldCheck,
@@ -29,18 +29,7 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           {/* Video de fond : une voiture qui roule sur une route. */}
-          <video
-            className="dl-hero-video absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            aria-hidden="true"
-            poster={asset('/videos/hero-car-poster.jpg')}
-          >
-            <source src={asset('/videos/hero-car.mp4')} type="video/mp4" />
-          </video>
+          <HeroVideo />
 
           {/* Voiles de contraste pour garder le texte lisible sur la video */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f1419]/95 via-[#0f1419]/80 to-[#0f1419]/30" />

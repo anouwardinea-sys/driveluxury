@@ -7,7 +7,7 @@ export default function CarCard({ car }) {
       {/* Image — le vehicule pivote en continu : balayage gauche/droite
           (rotateY) combine a un tangage haut/bas (rotateX). Le fond blanc
           se fond avec la photo du vehicule, sur fond blanc uni. */}
-      <div className="dl-car-spin relative h-64 overflow-hidden bg-white">
+      <div className="dl-car-spin relative h-60 overflow-hidden bg-white">
         <div className="dl-car-pitch absolute inset-0 flex items-center justify-center">
           <img
             src={car.image}
