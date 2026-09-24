@@ -160,4 +160,86 @@ body {
   .group:hover .dl-car-pitch {
     animation: none;
   }
+}/* ==================================================================
+   Banniere d'annonce (top bar) — messages qui defilent
+   ================================================================== */
+
+/* Un ruban horizontal qui defile en continu facon "marquee". Les
+   messages sont dupliques une fois, et on translate de -50% : la boucle
+   est donc parfaitement continue, sans saut visible. */
+@keyframes dl-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.dl-marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: dl-marquee 30s linear infinite;
+}
+
+/* Pause au survol : l'utilisateur peut lire un message tranquillement. */
+.dl-marquee:hover .dl-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Chaque message apparait en fondu puis s'efface, cale sur le ruban. */
+@keyframes dl-msg-pop {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+
+.dl-msg-pop {
+  animation: dl-msg-pop 6s ease-in-out infinite;
+}
+
+/* ==================================================================
+   Sections — apparition douce au scroll (fade + montee)
+   ================================================================== */
+
+@keyframes dl-reveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dl-reveal {
+  animation: dl-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ==================================================================
+   Villes — cartes d'images avec zoom au survol
+   ================================================================== */
+
+.dl-city-card img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dl-city-card:hover img {
+  transform: scale(1.12);
+}
+
+/* ==================================================================
+   Pulsation douce (badges, points de disponibilite)
+   ================================================================== */
+
+@keyframes dl-soft-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.6; transform: scale(0.9); }
+}
+
+.dl-soft-pulse {
+  animation: dl-soft-pulse 2s ease-in-out infinite;
+}
+
+/* Respecte la preference systeme "reduire les animations". */
+@media (prefers-reduced-motion: reduce) {
+  .dl-marquee-track,
+  .dl-msg-pop,
+  .dl-reveal,
+  .dl-soft-pulse {
+    animation: none;
+  }
+  .dl-marquee:hover .dl-marquee-track {
+    animation: none;
+  }
 }

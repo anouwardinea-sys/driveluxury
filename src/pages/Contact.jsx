@@ -44,7 +44,7 @@ export default function Contact() {
       </section>
 
       <section className="max-w-7xl mx-auto px-6 py-14">
-        <div className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
           {contactCards.map(({ icon: Icon, label, value, href }) => {
             const Wrapper = href ? 'a' : 'div';
             return (

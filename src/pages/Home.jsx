@@ -4,9 +4,10 @@ import {
   Car, CalendarCheck, KeyRound, Route, Search, ChevronDown, Quote, PlayCircle,
   Caravan, CarFront, Flame, Zap, Crown,
 } from 'lucide-react';
-import { cars, categories, features, steps, testimonials, stats, faqs } from '../data/carsData';
+import { cars, categories, features, steps, testimonials, stats, faqs, popularCities } from '../data/carsData';
 import CarCard from '../components/CarCard';
 import HeroVideo from '../components/HeroVideo';
+import PopularCities from '../components/PopularCities';
 
 const iconMap = {
   shield: ShieldCheck,
@@ -95,12 +96,28 @@ export default function Home() {
           className="grid grid-cols-1 md:grid-cols-4 gap-3 rounded-2xl bg-white border-slate-200 p-4 shadow-2xl shadow-slate-900/10"
         >
           <label className="flex flex-col gap-1 px-3 py-1">
-            <span className="text-[10px] font-bold tracking-widest uppercase text-slate-500">Location</span>
-            <input
-              type="text"
-              placeholder="City or airport"
-              className="bg-transparent text-sm text-[#0f1419] placeholder-slate-400 focus:outline-none"
-            />
+            <span className="text-[10px] font-bold tracking-widest uppercase text-slate-500">Location (USA)</span>
+            <select
+              defaultValue=""
+              className="bg-transparent text-sm text-[#0f1419] focus:outline-none cursor-pointer"
+            >
+              <option value="" disabled>Choose a city…</option>
+              <option value="JFK">New York — JFK Airport</option>
+              <option value="LGA">New York — LaGuardia</option>
+              <option value="LAX">Los Angeles — LAX Airport</option>
+              <option value="SFO">San Francisco — SFO Airport</option>
+              <option value="MIA">Miami — Miami Intl.</option>
+              <option value="ORD">Chicago — O'Hare</option>
+              <option value="DFW">Dallas — Fort Worth</option>
+              <option value="SEA">Seattle — Tacoma</option>
+              <option value="BOS">Boston — Logan</option>
+              <option value="LAS">Las Vegas — Harry Reid</option>
+              <option value="ATL">Atlanta — Hartsfield</option>
+              <option value="DEN">Denver — Intl. Airport</option>
+              <option value="HOU">Houston — George Bush</option>
+              <option value="PHX">Phoenix — Sky Harbor</option>
+              <option value="MCO">Orlando — Intl. Airport</option>
+            </select>
           </label>
           <label className="flex flex-col gap-1 px-3 py-1 md:border-l border-slate-200">
             <span className="text-[10px] font-bold tracking-widest uppercase text-slate-500">Pick-up</span>
@@ -139,6 +156,22 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ================= POPULAR CITIES ================= */}
+      <section className="bg-slate-50 border-y border-slate-200 py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-end justify-between mb-10">
+            <SectionHeading eyebrow="Where to next" title="Popular car rental cities" align="left" />
+            <Link
+              to="/locations"
+              className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-[#f0a500] hover:text-[#d99200] transition"
+            >
+              All locations <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <PopularCities cities={popularCities} />
+        </div>
+      </section>
+
       {/* ================= FEATURED CARS ================= */}
       <section className="max-w-7xl mx-auto px-6 pb-20">
         <div className="flex items-end justify-between mb-10">
@@ -164,7 +197,7 @@ export default function Home() {
               return (
                 <div
                   key={f.title}
-                  className="group flex-col rounded-2xl bg-white border-slate-200 hover:border-[#f0a500]/50 hover:shadow-lg p-7 transition"
+                  className="group flex flex-col rounded-2xl bg-white border-slate-200 hover:border-[#f0a500]/50 hover:shadow-lg p-7 transition"
                 >
                   <div className="w-12 h-12 rounded-xl bg-[#f0a500]/10 flex items-center justify-center text-[#f0a500] mb-5 group-hover:bg-[#f0a500] group-hover:text-white transition">
                     <Icon className="w-5 h-5" />

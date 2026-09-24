@@ -40,7 +40,7 @@ export default function CarCard({ car }) {
       </div>
 
       {/* Body */}
-      <div className="p-5 flex-col flex-1">
+      <div className="p-5 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-base font-bold text-[#0f1419] leading-tight">{car.name}</h3>
           <div className="flex items-center gap-1 text-[#f0a500] shrink-0">

@@ -350,6 +350,86 @@ export const categories = categoryList.map((cat) => ({
   count: cars.filter((c) => c.category === cat.id).length,
 }));
 
+// ------------------------------------------------------------------
+// Villes populaires (section "Popular car rental cities" de l'accueil)
+// Les visuels viennent d'Unsplash (URLs directes, aucun asset a gerer).
+// `from` indique le prix le plus bas disponible dans cette ville.
+// ------------------------------------------------------------------
+export const popularCities = [
+  {
+    id: "new-york",
+    name: "New York",
+    country: "United States",
+    cars: 34,
+    from: 89,
+    image:
+      "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "los-angeles",
+    name: "Los Angeles",
+    country: "United States",
+    cars: 28,
+    from: 79,
+    image:
+      "https://images.unsplash.com/photo-1502175353174-a7a70e73b362?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "miami",
+    name: "Miami",
+    country: "United States",
+    cars: 21,
+    from: 69,
+    image:
+      "https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "dubai",
+    name: "Dubai",
+    country: "United Arab Emirates",
+    cars: 40,
+    from: 120,
+    image:
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "paris",
+    name: "Paris",
+    country: "France",
+    cars: 19,
+    from: 95,
+    image:
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "london",
+    name: "London",
+    country: "United Kingdom",
+    cars: 23,
+    from: 99,
+    image:
+      "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "barcelona",
+    name: "Barcelona",
+    country: "Spain",
+    cars: 16,
+    from: 72,
+    image:
+      "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "amsterdam",
+    name: "Amsterdam",
+    country: "Netherlands",
+    cars: 14,
+    from: 85,
+    image:
+      "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=800&q=80",
+  },
+];
+
 export const testimonials = [
   {
     id: 1,
@@ -468,3 +548,45 @@ export const stats = [
 ];
 
 export default cars;
+// ------------------------------------------------------------------
+// Moyens de paiement proposes au checkout.
+// `icon` est une cle resolue dans le composant Booking (icones lucide).
+// ------------------------------------------------------------------
+export const paymentMethods = [
+  {
+    id: "card",
+    label: "Credit / Debit Card",
+    hint: "Visa, Mastercard, American Express",
+    icon: "card",
+  },
+  {
+    id: "paypal",
+    label: "PayPal",
+    hint: "Pay with your PayPal balance or linked card",
+    icon: "paypal",
+  },
+  {
+    id: "applepay",
+    label: "Apple Pay",
+    hint: "Fast checkout on iPhone, iPad and Mac",
+    icon: "apple",
+  },
+  {
+    id: "googlepay",
+    label: "Google Pay",
+    hint: "Pay with your saved Google payment methods",
+    icon: "wallet",
+  },
+  {
+    id: "bank",
+    label: "Bank Transfer",
+    hint: "Direct transfer — confirmation within 24h",
+    icon: "bank",
+  },
+  {
+    id: "cash",
+    label: "Pay at Pick-up",
+    hint: "Settle by card or cash at the branch counter",
+    icon: "cash",
+  },
+];

@@ -1,13 +1,42 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { asset } from '../utils/asset';
+import AnnouncementBar from './AnnouncementBar';
 import {
-  Menu, X, ArrowRight, Phone, ShieldCheck, ChevronDown, Headset, Car,
+  Menu, X, ArrowRight, Phone, ChevronDown,
+  Globe, Check, MapPin,
 } from 'lucide-react';
+
+// Pays + devise proposes dans le selecteur de la barre superieure.
+// Le choix est purement cote client (site de demo sans backend).
+const regions = [
+  { code: 'US', label: 'United States', currency: 'USD', symbol: '$', lang: 'English' },
+  { code: 'MA', label: 'Maroc', currency: 'MAD', symbol: 'DH', lang: 'Français' },
+  { code: 'AE', label: 'United Arab Emirates', currency: 'AED', symbol: 'د.إ', lang: 'English' },
+  { code: 'FR', label: 'France', currency: 'EUR', symbol: '€', lang: 'Français' },
+  { code: 'GB', label: 'United Kingdom', currency: 'GBP', symbol: '£', lang: 'English' },
+  { code: 'ES', label: 'España', currency: 'EUR', symbol: '€', lang: 'Español' },
+];
 
 export default function Navbar() {
     // État pour ouvrir/fermer le menu mobile sur les petits écrans
     const [isOpen, setIsOpen] = useState(false);
+
+    // Selecteur de pays / devise (ouvre un petit menu deroulant).
+    const [regionOpen, setRegionOpen] = useState(false);
+    const [region, setRegion] = useState(regions[0]);
+    const regionRef = useRef(null);
+
+    // Ferme le menu pays si on clique en dehors.
+    useEffect(() => {
+      const onClick = (e) => {
+        if (regionRef.current && !regionRef.current.contains(e.target)) {
+          setRegionOpen(false);
+        }
+      };
+      document.addEventListener('mousedown', onClick);
+      return () => document.removeEventListener('mousedown', onClick);
+    }, []);
 
     // Permet de savoir sur quelle page l'utilisateur se trouve pour mettre en surbrillance le lien actif
     const location = useLocation();
@@ -22,36 +51,66 @@ export default function Navbar() {
         { name: 'CONTACT US', path: '/contact' },
       ];
 
-    // Infos de la barre supérieure (comme sur la maquette)
-    const topInfos = [
-        { icon: Headset, text: '24/7 Customer Support' },
-        { icon: Car, text: 'Free Cancellation' },
-        { icon: ShieldCheck, text: 'Best Price Guarantee' },
-      ];
-
       return (
         <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
 
-          {/* ============ BARRE SUPÉRIEURE (TOP BAR) ============ */}
-          <div className="hidden md:block bg-[#0f1419] text-slate-300">
-            <div className="max-w-7xl mx-auto px-6 h-9 flex items-center justify-between text-[11px] font-medium">
-              <div className="flex items-center gap-7">
-                {topInfos.map(({ icon: Icon, text }) => (
-                  <span key={text} className="flex items-center gap-2 hover:text-white transition">
-                    <Icon className="w-3.5 h-3.5 text-slate-400" />
-                    {text}
-                  </span>
-                ))}
-              </div>
+          {/* ============ BARRE SUPERIEURE (TOP BAR) ============ */}
+          {/* Banniere d'annonces qui defile, surmontee du selecteur
+              pays / devise a droite. */}
+          <div className="hidden md:block bg-[#0f1419] text-slate-300 border-b border-white/5">
+            {/* Ruban anime des annonces */}
+            <AnnouncementBar />
 
+            {/* Ligne utilitaire : telephone + selection pays/devise */}
+            <div className="max-w-7xl mx-auto px-6 h-10 flex items-center justify-between text-[11px] font-medium border-t border-white/5">
               <div className="flex items-center gap-6">
                 <a href="tel:+18001234567" className="flex items-center gap-2 hover:text-white transition">
-                  <Phone className="w-3.5 h-3.5 text-slate-400" />
+                  <Phone className="w-3.5 h-3.5 text-[#f0a500]" />
                   +1 (800) 123-4567
                 </a>
-                <span className="flex items-center gap-1.5 cursor-pointer hover:text-white transition">
-                  USD <ChevronDown className="w-3 h-3" />
+                <span className="hidden lg:flex items-center gap-2 text-slate-400">
+                  <MapPin className="w-3.5 h-3.5 text-slate-500" />
+                  120+ pickup points worldwide
                 </span>
+              </div>
+
+              {/* Selecteur pays + devise (avec options) */}
+              <div className="relative" ref={regionRef}>
+                <button
+                  type="button"
+                  onClick={() => setRegionOpen((v) => !v)}
+                  className="flex items-center gap-2 hover:text-white transition"
+                  aria-haspopup="listbox"
+                  aria-expanded={regionOpen}
+                >
+                  <Globe className="w-3.5 h-3.5 text-[#f0a500]" />
+                  <span>{region.label}</span>
+                  <span className="text-slate-500">| {region.currency} {region.symbol}</span>
+                  <ChevronDown className={`w-3 h-3 transition ${regionOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {regionOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-64 rounded-xl bg-white shadow-2xl border border-slate-200 py-2 z-50">
+                    <p className="px-4 pb-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      Country &amp; currency
+                    </p>
+                    {regions.map((r) => (
+                      <button
+                        key={r.code}
+                        type="button"
+                        onClick={() => { setRegion(r); setRegionOpen(false); }}
+                        className="w-full flex items-center gap-3 px-4 py-2.5 text-left text-[12px] text-[#0f1419] hover:bg-slate-50 transition"
+                      >
+                        <span className="w-6 text-[10px] font-bold text-slate-400">{r.code}</span>
+                        <span className="flex-1 font-semibold">{r.label}</span>
+                        <span className="text-[11px] text-slate-500">{r.currency} {r.symbol}</span>
+                        {region.code === r.code && (
+                          <Check className="w-3.5 h-3.5 text-[#f0a500]" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>
