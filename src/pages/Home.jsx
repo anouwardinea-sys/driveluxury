@@ -281,13 +281,13 @@ export default function Home() {
 
       {/* ================= CTA ================= */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
-        <div className="relative overflow-hidden rounded-3xl border-amber-500/30">
+        <div className="relative isolate overflow-hidden rounded-3xl border-amber-500/30 min-h-[320px] flex items-center">
           <img
             src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1600&q=80"
             alt="Road trip"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 -z-10 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b0f12] via-[#0b0f12]/85 to-transparent" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0b0f12] via-[#0b0f12]/85 to-transparent" />
           <div className="relative px-8 sm:px-14 py-16 max-w-xl">
             <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight">
               Ready to hit the road? Let us handle the wheels.

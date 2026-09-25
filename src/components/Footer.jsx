@@ -23,15 +23,26 @@ const columns = [
       { name: 'Privacy Policy', to: '/contact' },
     ],
   },
+  {
+    title: 'Top Cities',
+    links: [
+      { name: 'New York', to: '/locations' },
+      { name: 'Los Angeles', to: '/locations' },
+      { name: 'Miami', to: '/locations' },
+      { name: 'Dubai', to: '/locations' },
+    ],
+  },
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-[#080b0d] border-t border-slate-800/70 mt-auto">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        {/* Grille equil libre : la marque occupe 2 colonnes, puis chaque
+            rubrique de liens 1 colonne. Total 6 en desktop. */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="sm:col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <img
                 src={asset('/brand/logo-mark.png')}
@@ -81,30 +92,80 @@ export default function Footer() {
           ))}
 
           {/* Newsletter + contact */}
-          <div>
+          <div className="sm:col-span-2 lg:col-span-2 lg:pl-8 lg:border-l lg:border-slate-800/70">
             <h4 className="text-xs font-bold tracking-widest uppercase text-white mb-4">Stay in the loop</h4>
             <p className="text-sm text-slate-400 mb-4">Get exclusive offers and new arrivals.</p>
             <form className="flex gap-2 mb-6" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
                 placeholder="Your email"
-                className="flex-1 min-w-0 px-3 py-2 rounded-lg bg-slate-800/60 border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#f0a500]"
+                className="flex-1 min-w-0 px-3 py-2.5 rounded-lg bg-slate-800/60 border border-slate-700/70 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#f0a500] transition"
               />
-              <button className="px-3 py-2 rounded-lg bg-[#f0a500] hover:bg-[#d99200] text-white transition" aria-label="Subscribe">
+              <button
+                className="px-4 py-2.5 rounded-lg bg-[#f0a500] hover:bg-[#d99200] text-white transition shadow-lg shadow-amber-500/20"
+                aria-label="Subscribe"
+              >
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li className="flex items-center gap-2"><MapPin className="w-4 h-4 text-[#f0a500]" /> 24 Park Avenue, New York</li>
-              <li className="flex items-center gap-2"><Mail className="w-4 h-4 text-[#f0a500]" /> hello@drivex.com</li>
-              <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-[#f0a500]" /> +1 (800) 123-4567</li>
+              <li className="flex items-center gap-2.5">
+                <MapPin className="w-4 h-4 text-[#f0a500] shrink-0" /> 24 Park Avenue, New York
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-[#f0a500] shrink-0" />
+                <a href="mailto:hello@drivex.com" className="hover:text-[#f0a500] transition">hello@drivex.com</a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-[#f0a500] shrink-0" />
+                <a href="tel:+18001234567" className="hover:text-[#f0a500] transition">+1 (800) 123-4567</a>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-slate-800/70 flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-          <p>&copy; {new Date().getFullYear()} DriveX Car Rental. All rights reserved.</p>
-          <p>Designed with passion for the road.</p>
+        {/* ============ BARRE DE COPYRIGHT ============ */}
+        <div className="mt-12 pt-8 border-t border-slate-800/70">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            {/* Copyright + mentions legales */}
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-5 text-xs text-slate-500 text-center sm:text-left">
+              <p>
+                &copy; {new Date().getFullYear()}{' '}
+                <span className="font-semibold text-slate-300">DriveX Car Rental</span>. All rights reserved.
+              </p>
+              <span className="hidden sm:block w-px h-3 bg-slate-700" aria-hidden="true" />
+              <nav className="flex items-center gap-4">
+                <Link to="/contact" className="hover:text-[#f0a500] transition">Terms</Link>
+                <Link to="/contact" className="hover:text-[#f0a500] transition">Privacy</Link>
+                <Link to="/contact" className="hover:text-[#f0a500] transition">Cookies</Link>
+              </nav>
+            </div>
+
+            {/* Moyens de paiement acceptes */}
+            <div className="flex items-center gap-4">
+              <span className="text-[11px] text-slate-500 hidden sm:inline">Secure payments</span>
+              <div className="flex items-center gap-2">
+                {['VISA', 'MC', 'AMEX', 'PayPal', 'G Pay'].map((p) => (
+                  <span
+                    key={p}
+                    className="px-2.5 py-1 rounded-md bg-slate-800/70 border border-slate-700/70 text-[10px] font-bold text-slate-300 tracking-wide"
+                  >
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Ligne du bas */}
+          <div className="mt-6 pt-5 border-t border-slate-800/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-600">
+            <p className="flex items-center gap-1.5">
+              Designed with
+              <span className="text-[#f0a500]">&#10084;</span>
+              for the road.
+            </p>
+            <p>Prices in USD &middot; Taxes may apply at checkout</p>
+          </div>
         </div>
       </div>
     </footer>
