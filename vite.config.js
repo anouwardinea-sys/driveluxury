@@ -16,7 +16,7 @@ import { defineConfig } from 'vite'
 export default defineConfig(({ command }) => {
   const envBase = process.env.VITE_BASE_PATH
   // Fallback : en production met '/driveluxury/', en dev '/'
-  const base = envBase || (command === 'build' ? '/driveluxury/' : '/')
+ const base = envBase || '/'
 
   return {
     plugins: [
