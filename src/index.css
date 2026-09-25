@@ -34,6 +34,14 @@
   --brand: #f0a500;
   --ink: #0f1419;
   --bg-light: #ffffff;
+
+  /* Typographie ----
+     Plus Jakarta Sans : police principale (texte courant, UI).
+     Sora : police d'affichage pour les grands titres (formes plus
+     geometriques, donne du caractere aux h1/h2).
+     Les deux sont chargees dans index.html. */
+  --font-sans: 'Plus Jakarta Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Sora', 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 *,
@@ -44,15 +52,36 @@
 
 html {
   scroll-behavior: smooth;
+  /* Evite le saut de mise en page quand la police custom finit de charger. */
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--bg-light);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Meilleure lisibilite des longs paragraphes. */
+  text-rendering: optimizeLegibility;
+}
+
+/* Les grands titres utilisent Sora avec un interlettrage resserre, ce qui
+   donne l'aspect "premium" attendu sur un site de location haut de gamme. */
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Les libelles en majuscules (eyebrows, boutons, tags) respirent mieux
+   avec un peu d'espace entre les lettres. */
+.tracking-wider,
+.tracking-widest {
+  letter-spacing: 0.08em;
 }
 
 #root {
