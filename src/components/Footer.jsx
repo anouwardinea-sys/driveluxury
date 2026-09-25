@@ -3,6 +3,7 @@
 // plus exportées. On utilise des icônes disponibles pour ne pas casser le build.
 import { Globe, AtSign, Share2, Send, MapPin, Mail, Phone, ArrowRight } from 'lucide-react';
 import { asset } from '../utils/asset';
+import PaymentLogos from './PaymentLogos';
 
 const columns = [
   {
@@ -141,19 +142,10 @@ export default function Footer() {
               </nav>
             </div>
 
-            {/* Moyens de paiement acceptes */}
-            <div className="flex items-center gap-4">
+            {/* Moyens de paiement acceptes (logos officiels) */}
+            <div className="flex items-center gap-3">
               <span className="text-[11px] text-slate-500 hidden sm:inline">Secure payments</span>
-              <div className="flex items-center gap-2">
-                {['VISA', 'MC', 'AMEX', 'PayPal', 'G Pay'].map((p) => (
-                  <span
-                    key={p}
-                    className="px-2.5 py-1 rounded-md bg-slate-800/70 border border-slate-700/70 text-[10px] font-bold text-slate-300 tracking-wide"
-                  >
-                    {p}
-                  </span>
-                ))}
-              </div>
+              <PaymentLogos size="sm" />
             </div>
           </div>
 

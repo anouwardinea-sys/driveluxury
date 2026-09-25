@@ -4,6 +4,7 @@ import {
   Building2, Apple, Check, Lock,
 } from 'lucide-react';
 import { cars, paymentMethods } from '../data/carsData';
+import PaymentLogos from '../components/PaymentLogos';
 
 // Resolution cle -> icone pour les moyens de paiement.
 const payIcons = {
@@ -175,9 +176,13 @@ export default function Booking() {
 
             {/* ================= MOYENS DE PAIEMENT ================= */}
             <div className="mt-8 pt-6 border-t border-slate-200">
-              <div className="flex items-center gap-2 mb-4">
-                <CreditCard className="w-4 h-4 text-[#f0a500]" />
-                <h2 className="text-lg font-black text-[#0f1419]">Payment method</h2>
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <div className="flex items-center gap-2">
+                  <CreditCard className="w-4 h-4 text-[#f0a500]" />
+                  <h2 className="text-lg font-black text-[#0f1419]">Payment method</h2>
+                </div>
+                {/* Logos officiels des cartes acceptees */}
+                <PaymentLogos size="sm" />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

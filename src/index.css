@@ -1,9 +1,9 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 @plugin "daisyui" {
   themes: driveluxury --default;
 }
 
-/* ---------- Thème DaisyUI DriveLuxury (clair premium, accent orange) ---------- */
+/* ---------- ThÃ¨me DaisyUI DriveLuxury (clair premium, accent orange) ---------- */
 @plugin "daisyui/theme" {
   name: "driveluxury";
   default: true;
@@ -62,7 +62,7 @@ body {
 }
 
 /* ==================================================================
-   Hero — video de fond (voiture qui roule)
+   Hero â€” video de fond (voiture qui roule)
    ================================================================== */
 
 /* Leger zoom lent ("Ken Burns") pour donner du mouvement a la video
@@ -85,7 +85,7 @@ body {
 }
 
 /* ==================================================================
-   Cartes vehicules — vehicule qui pivote en continu (façon studio 3D)
+   Cartes vehicules â€” vehicule qui pivote en continu (faÃ§on studio 3D)
    ================================================================== */
 
 /* Scene 3D : la perspective est portee par le conteneur, sinon
@@ -161,7 +161,7 @@ body {
     animation: none;
   }
 }/* ==================================================================
-   Banniere d'annonce (top bar) — messages qui defilent
+   Banniere d'annonce (top bar) â€” messages qui defilent
    ================================================================== */
 
 /* Un ruban horizontal qui defile en continu facon "marquee". Les
@@ -194,7 +194,7 @@ body {
 }
 
 /* ==================================================================
-   Sections — apparition douce au scroll (fade + montee)
+   Sections â€” apparition douce au scroll (fade + montee)
    ================================================================== */
 
 @keyframes dl-reveal {
@@ -207,7 +207,7 @@ body {
 }
 
 /* ==================================================================
-   Villes — cartes d'images avec zoom au survol
+   Villes â€” cartes d'images avec zoom au survol
    ================================================================== */
 
 .dl-city-card img {
@@ -243,3 +243,37 @@ body {
     animation: none;
   }
 }
+
+/* ==================================================================
+   Logos des moyens de paiement (footer, checkout)
+   ================================================================== */
+
+/* Le SVG est injecte en inline (voir PaymentLogos.jsx) et remplit la
+   hauteur de sa pastille ; la largeur suit le viewBox du logo. */
+.dl-pay-logo svg {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+/* Logos "carte" (Visa, Mastercard, Amex) : le SVG officiel porte deja
+   son propre fond colore et ses coins. */
+.dl-pay-card {
+  background: transparent;
+}
+
+/* Logos monochromes (PayPal, Google Pay, Apple Pay) : pastille blanche,
+   remplissage a la couleur de la marque. */
+.dl-pay-plain {
+  background: #ffffff;
+  padding: 0 0.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.dl-pay-plain .dl-pay-logo svg {
+  fill: currentColor;
+}
+
+.dl-pay-brand-paypal    { color: #00457c; }
+.dl-pay-brand-googlepay { color: #3c4043; }
+.dl-pay-brand-applepay  { color: #111111; }
